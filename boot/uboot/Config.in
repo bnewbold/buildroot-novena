@@ -68,6 +68,9 @@ config BR2_TARGET_UBOOT_CUSTOM_GIT_REPO_URL
 config BR2_TARGET_UBOOT_CUSTOM_GIT_VERSION
 	string "Custom Git version"
 
+config BR2_TARGET_UBOOT_CUSTOM_GIT_LOCALVERSION
+	string "Custom 'localversion' (to override setlocalversion)"
+
 endif
 
 choice
@@ -93,6 +96,10 @@ config BR2_TARGET_UBOOT_FORMAT_NAND_BIN
 config BR2_TARGET_UBOOT_FORMAT_KWB
 	depends on BR2_arm
 	bool "u-boot.kwb (Marvell)"
+
+config BR2_TARGET_UBOOT_FORMAT_IMX
+	depends on BR2_arm
+	bool "u-boot.imx (Freescale)"
 
 config BR2_TARGET_UBOOT_FORMAT_LDR
 	depends on BR2_bfin
