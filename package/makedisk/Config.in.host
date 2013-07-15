@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_MAKEDISK
+	bool "host makedisk"
+	help
+	  SD Card image generator (multi-partition)
+
+	  https://github.com/sutajiokousagi/makedisk
+
