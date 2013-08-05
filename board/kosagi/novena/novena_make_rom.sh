@@ -19,8 +19,8 @@ ROOTFS_IMG=$BINARIES_DIR/rootfs.ext4
 
 WORK_DIR=$BASE_DIR/makedisk
 FATFS_BLOCKS=65536
-BOOT_SIZE=16M
-EXT_SIZE=64M 	# TODO: grab this from a BR2_something environment variable?
+BOOT_SIZE=32M
+EXT_SIZE=400M 	# TODO: grab this from a BR2_something environment variable?
 PADDING_SIZE=512k
 FINAL_IMAGE=$BINARIES_DIR/novena-final-image.img
 
@@ -67,7 +67,8 @@ rm -rf $WORK_DIR
 set +x # verbose command output off
 echo "Created final image file"
 ls -lh $FINAL_IMAGE
-#echo "Compressing image..."
-#gzip $FINAL_IMAGE
-#ls -lh $FINAL_IMAGE.g*
+echo "Compressing image..."
+rm -f $FINAL_IMAGE.gz
+gzip $FINAL_IMAGE
+ls -lh $FINAL_IMAGE.g*
 echo "Done, but you should probably run 'sync'."
