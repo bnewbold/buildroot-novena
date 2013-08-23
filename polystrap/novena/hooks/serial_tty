@@ -1,1 +1,1 @@
-../../default/hooks/serial_tty
+echo "T0:2345:respawn:/sbin/getty 115200 ttymxc1" >> $ROOTDIR/etc/inittab

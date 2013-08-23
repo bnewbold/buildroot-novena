@@ -1,1 +1,2 @@
-../../default/hooks/create_user
+fakechroot chroot $ROOTDIR useradd user -p `openssl passwd -crypt -salt // ""` -s /bin/bash --create-home
+fakechroot chroot $ROOTDIR usermod -a -G audio,dialout user

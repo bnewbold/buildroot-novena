@@ -1,0 +1,16 @@
+manpages
+man-db
+i2c-tools
+build-essential
+wget
+iproute
+parted
+dosfstools
+iputils-ping
+iptables
+traceroute
+dnsutils
+lsof
+ethtool
+pciutils
+git-core
