@@ -1,0 +1,56 @@
+
+This is a clone of the buildroot repository with Novena laptop build support.
+For more information on this hardware:
+
+  http://kosagi.com/w/index.php?title=Novena_Main_Page
+
+The base (buildroot rootfs) support is relatively cleanly implemented (make
+novena_config), though incomplete (eg, missing DMA drivers, complete PCIe
+support).
+
+This file, however, describes how to build a complete bootable image file with
+a debian rootfs, build with polystrap (based on multistrap). The polystrap
+scripts are included in this repo (see polystrap/README), but the multistrap
+tools and fakeroot/fakechroot/qemu must be installed on the host system (which
+pretty much assumes a debian-based host). Like buildroot, this system allows a
+full build as a non-root user, with the exception that two target-platform-arch
+binaries (fake(ch)root .so libraries, for armhf in this case) must be installed
+on the host system in privileged locations. The hack below describes how to do
+this by collecting the binary files from debian packages themselves, which
+perhaps makes this hack less agregious to those with freedom/security concerns.
+
+DISCLAIMERS:
+
+  * Work in Progress, assume zero reliability or security
+  * multistrap does not validated apt packages from inside fakeroot
+  * current images have null password root login
+  * current images run sshd with passwordless root login
+  * u-boot has pointy corners; eg, building outside of a git repository
+    required hacks
+  * most buildroot sources are fetched over non-https connections and are not
+    even checksummed
+
+As a pre-requisit, need to install the following packages (assuming debian
+host):
+
+  sudo apt-get install fakeroot fakechroot multistrap openssl qemu-user-static
+
+Setup polystrap requirements, and build debian rootfs:
+
+1. cd ./polystrap
+2. run ./polystrap.sh novena; it will fail. you need to copy the fakeroot and
+   fakechroot libraries for the *target* architecture into your *host*
+   operating system's path:
+     sudo mkdir -p /usr/lib/arm-linux-gnueabihf
+     sudo cp debian-wheezy-armhf-*/usr/lib/arm-linux-gnueabihf/fakechroot/libfakechroot.so debian-wheezy-armhf-*/usr/lib/arm-linux-gnueabihf/libfakeroot/libfakeroot-sysv.so /usr/lib/arm-linux-gnueabihf/
+3. rm -rf debian-wheezy-armhf-*
+4. ./polystrap.sh novena   # ignore the final warning from tar
+5. mkdir -p ../output/images
+6. cp debian-wheezy-armhf-*.tar ../output/images/debian-rootfs.tar
+
+Build kernel, u-boot, and final images:
+
+1. make novena_debian_config
+2. make menuconfig # (saving output)
+3. make
+
