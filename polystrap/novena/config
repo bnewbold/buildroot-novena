@@ -1,0 +1,4 @@
+SUITE="wheezy"
+ARCH="armhf"
+ROOTDIR="debian-$SUITE-$ARCH-`date +%F`"
+MIRROR="http://cdn.debian.net/debian"
