@@ -15,14 +15,14 @@ KERNEL_DTB_RENAME=uImage-novena.dtb
 UBOOT_BIN=$BINARIES_DIR/u-boot.imx
 UBOOT_SCR=$BINARIES_DIR/boot.scr
 
-ROOTFS_IMG=$BINARIES_DIR/rootfs.ext4
+ROOTFS_IMG=$BINARIES_DIR/debian-rootfs.ext4
 
 WORK_DIR=$BASE_DIR/makedisk
 FATFS_BLOCKS=65536
 BOOT_SIZE=32M
 EXT_SIZE=400M 	# TODO: grab this from a BR2_something environment variable?
 PADDING_SIZE=512k
-FINAL_IMAGE=$BINARIES_DIR/novena-final-image.img
+FINAL_IMAGE=$BINARIES_DIR/novena-final-debian-image.img
 
 if [ ! -f $MAKEDISK ] ||
    [ ! -f $GENFATFS ]; then
