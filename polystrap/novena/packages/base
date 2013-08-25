@@ -18,3 +18,4 @@ locales
 ifupdown
 net-tools
 firmware-linux-free
+ntpdate

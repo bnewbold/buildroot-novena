@@ -3,3 +3,4 @@ wireless-tools
 wpasupplicant
 hostapd
 rfkill
+wireless-regdb

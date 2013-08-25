@@ -14,3 +14,11 @@ lsof
 ethtool
 pciutils
 git-core
+ca-certificates
+pinentry-curses
+gnupg2
+dnsmasq
+gnupg2
+ufw
+radvd
+rsyslog
