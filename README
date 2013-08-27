@@ -50,7 +50,7 @@ Setup polystrap requirements, and build debian rootfs:
 
 Build kernel, u-boot, and final images:
 
-1. make novena_debian_config
+1. make novena_debian_defconfig
 2. make menuconfig # (saving output)
 3. make
 
